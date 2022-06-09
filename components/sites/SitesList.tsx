@@ -1,6 +1,7 @@
 import {FlatList, StyleSheet, Text, View} from "react-native";
-import SiteItem from "../../models/SiteItem";
+import SiteItem from "./SiteItem";
 import {Colors} from "../../constants/Colors";
+import {useNavigation} from "@react-navigation/native";
 
 function SitesList({sites}) {
 
@@ -10,9 +11,17 @@ function SitesList({sites}) {
         </View>
     }
 
+    const navigation = useNavigation();
+    function selectedItemHandler(id) {
+        // @ts-ignore
+        navigation.navigate("SiteDetails",{
+            siteId:id
+        })
+    }
+
     return <FlatList
         style={styles.list}
-        data={sites} renderItem={({item})=> <SiteItem onSelected={()=>{}} site={item} /> }
+        data={sites} renderItem={({item})=> <SiteItem onSelected={selectedItemHandler} site={item} /> }
         keyExtractor={(item)=>item.id}
     />
 }

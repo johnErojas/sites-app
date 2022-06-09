@@ -1,8 +1,10 @@
 import {StyleSheet, Text, View, Button} from 'react-native';
 import SiteForm from "../components/sites/SiteForm";
+import {insertSite} from "../utils/database";
 
 function AddSiteScreen({navigation}) {
-    function createSiteHandler(site) {
+    async function createSiteHandler(site) {
+        await insertSite(site);
         navigation.navigate("AllSites",{site:site})
     }
     return <SiteForm onSubmit={createSiteHandler} />

@@ -1,16 +1,23 @@
 import SitesList from "../components/sites/SitesList";
 import {useEffect, useState} from "react";
+import {useIsFocused} from "@react-navigation/native";
+import {fetchSites} from "../utils/database";
 
-function AllSitesScreen({route}) {
+function AllSitesScreen() {
     const [sites, setSites] = useState([]);
+    const isFocused = useIsFocused();
     useEffect(() => {
-        if (route.params) {
-            const site = route.params.site;
-            if (site) {
-                setSites((list) => [site]);
+        async function loadSites() {
+            try{
+                const sites = await fetchSites();
+                setSites(sites);
+            }catch (e) {
+                console.warn(e);
             }
         }
-    }, [setSites, route]);
+
+        if(isFocused)loadSites();
+    }, [isFocused]);
 
 
     return <SitesList sites={sites}/>

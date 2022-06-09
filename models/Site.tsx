@@ -4,7 +4,7 @@ class Site {
     imageUri
     address
     location
-    constructor(title, imageUri, location) {
+    constructor(title, imageUri, location, id) {
         this.title = title;
         this.imageUri = imageUri;
         this.address = location.address;
@@ -12,7 +12,7 @@ class Site {
             lat: location.lat,
             lng: location.lng
         };
-        this.id = new Date().toISOString().slice(0,10) + Math.random().toString();
+        this.id = id;
     }
 }
 

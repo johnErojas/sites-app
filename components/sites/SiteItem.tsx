@@ -1,9 +1,10 @@
 import {StyleSheet,Image, Pressable, Text, View} from "react-native";
-import {Colors} from "../constants/Colors";
+import {Colors} from "../../constants/Colors";
 
 function SiteItem({site, onSelected}) {
-    return <Pressable style={({pressed})=>[styles.item, pressed && styles.pressed]} onPress={onSelected}>
-
+    return <Pressable
+        style={({pressed})=>[styles.item, pressed && styles.pressed]}
+        onPress={onSelected.bind(this,site.id)}>
             <Image style={styles.image} source={{uri: site.imageUri }} />
             <View style={styles.info}>
                 <Text style={styles.info}>{site.title}</Text>

@@ -3,8 +3,7 @@ import {useCallback, useState} from "react";
 import {Colors} from "../../constants/Colors";
 import ImagePicker from "./ImagePicker";
 import LocationPicker from "./LocationPicker";
-import OutlinedButton from "../ui/OutlinedButton";
-import {Ico} from "../fontawesome/constants/IconNames";
+import Button from "../ui/Button";
 import Site from "../../models/Site";
 
 function SiteForm({onSubmit}) {
@@ -16,19 +15,20 @@ function SiteForm({onSubmit}) {
         setEnteredTitle(enteredText);
     }
 
-    function imagePickedHandler(imageUri){
+    function imagePickedHandler(imageUri) {
         setPickedImage(imageUri);
     }
 
     const locationPickedHandler = useCallback(location => {
         setPickedLocation(location);
-    },[]);
+    }, []);
 
     function saveSiteHandler() {
         const siteData = new Site(
             enteredTitle,
             pickedImage,
-            pickedLocation
+            pickedLocation,
+            null
         );
 
         onSubmit(siteData);
@@ -38,17 +38,13 @@ function SiteForm({onSubmit}) {
         <ScrollView style={styles.form}>
             <View>
                 <Text style={styles.label}>Title</Text>
-                <TextInput style={styles.input} onChangeText={changeTitleHandler} value={enteredTitle} />
+                <TextInput style={styles.input} onChangeText={changeTitleHandler} value={enteredTitle}/>
             </View>
 
-            <ImagePicker onImagePicked={imagePickedHandler} />
-            <LocationPicker onLocationPicked={locationPickedHandler} />
-            <View style={{
-                marginTop: 18
-            }}>
-                <OutlinedButton icon={Ico.circlePlus} onPress={saveSiteHandler} >
-                    <Text>Add Site</Text>
-                </OutlinedButton>
+            <ImagePicker onImagePicked={imagePickedHandler}/>
+            <LocationPicker onLocationPicked={locationPickedHandler}/>
+            <View style={{marginTop: 18}}>
+                <Button label="Add Site" onPress={saveSiteHandler}/>
             </View>
         </ScrollView>
     )
