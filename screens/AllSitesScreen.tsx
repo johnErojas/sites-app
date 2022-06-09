@@ -1,12 +1,8 @@
 import {StyleSheet, Text, View, Button} from 'react-native';
+import SitesList from "../components/sites/SitesList";
 
 function AllSitesScreen() {
-        return (
-            <Text>
-
-            </Text>
-        );
-
+        return <SitesList sites={[]} />
 }
 
 export default AllSitesScreen;
