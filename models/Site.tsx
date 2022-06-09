@@ -12,7 +12,7 @@ class Site {
             lat: location.lat,
             lng: location.lng
         };
-        this.id = new Date().toString() + Math.random().toString();
+        this.id = new Date().toISOString().slice(0,10) + Math.random().toString();
     }
 }
 

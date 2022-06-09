@@ -3,13 +3,13 @@ import {Colors} from "../constants/Colors";
 
 function SiteItem({site, onSelected}) {
     return <Pressable style={({pressed})=>[styles.item, pressed && styles.pressed]} onPress={onSelected}>
-        <View>
+
             <Image style={styles.image} source={{uri: site.imageUri }} />
             <View style={styles.info}>
                 <Text style={styles.info}>{site.title}</Text>
-                <Text style={styles.address}>{site.address}</Text>
+                <Text style={styles.address}>{site.address || "-"}</Text>
             </View>
-        </View>
+
     </Pressable>
 }
 
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: "bold",
         fontSize: 18,
-        color: Colors.gray700
+        color: Colors.gray700,
+        paddingHorizontal: 12
     },
     address: {
         fontSize: 12,

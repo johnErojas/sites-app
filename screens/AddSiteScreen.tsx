@@ -3,9 +3,7 @@ import SiteForm from "../components/sites/SiteForm";
 
 function AddSiteScreen({navigation}) {
     function createSiteHandler(site) {
-        navigation.navigate("AllSites",{
-            site:site
-        })
+        navigation.navigate("AllSites",{site:site})
     }
     return <SiteForm onSubmit={createSiteHandler} />
 }
